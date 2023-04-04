@@ -1,0 +1,24 @@
+name: taskapp
+description: A sample application.
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  provider: ^6.0.5
+  yaru: ^0.6.2
+  yaru_widgets: ^2.3.1
+  yaru_icons: ^1.0.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
