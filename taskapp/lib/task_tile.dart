@@ -13,7 +13,7 @@ class TaskTile extends StatelessWidget {
   });
 
   final Task task;
-  final Function(bool?) onChanged;
+  final ValueChanged<bool?> onChanged;
   final VoidCallback remove;
 
   @override
