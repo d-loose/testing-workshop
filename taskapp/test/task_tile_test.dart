@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:taskapp/task.dart';
 import 'package:taskapp/task_tile.dart';
-import 'package:yaru/yaru.dart';
 import 'package:yaru_widgets/widgets.dart';
+
+import 'test_utils.dart';
 
 void main() {
   testWidgets('undone task', (tester) async {
@@ -51,16 +51,4 @@ void main() {
     await tester.tap(removeButton);
     expect(removed, isTrue);
   });
-}
-
-extension on WidgetTester {
-  Future<void> pumpYaruWidget(Widget widget) {
-    return pumpWidget(YaruTheme(
-      builder: (context, yaru, child) => MaterialApp(
-        theme: yaru.theme,
-        darkTheme: yaru.darkTheme,
-        home: widget,
-      ),
-    ));
-  }
 }
