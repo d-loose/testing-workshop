@@ -13,6 +13,7 @@ void showNewTaskDialog(BuildContext context) {
 }
 
 class NewTaskDialog extends StatefulWidget {
+  @visibleForTesting
   const NewTaskDialog({super.key, required this.model});
   final TaskList model;
 
