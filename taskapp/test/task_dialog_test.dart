@@ -17,7 +17,7 @@ void main() {
     model = MockTaskList();
   });
   testWidgets('add task', (tester) async {
-    await tester.pumpYaruWidget(NewTaskDialog(model: model));
+    await tester.pumpYaruWidget(TaskDialog(model: model));
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField), "New Task");
@@ -27,7 +27,7 @@ void main() {
   });
 
   testWidgets('cancel', (tester) async {
-    await tester.pumpYaruWidget(NewTaskDialog(model: model));
+    await tester.pumpYaruWidget(TaskDialog(model: model));
     await tester.pumpAndSettle();
 
     await tester.tap(find.text("Cancel"));

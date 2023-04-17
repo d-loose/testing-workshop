@@ -4,24 +4,24 @@ import 'package:provider/provider.dart';
 import 'task.dart';
 import 'task_list.dart';
 
-void showNewTaskDialog(BuildContext context) {
+void showTaskDialog(BuildContext context) {
   final model = context.read<TaskList>();
   showDialog(
     context: context,
-    builder: (context) => NewTaskDialog(model: model),
+    builder: (context) => TaskDialog(model: model),
   );
 }
 
-class NewTaskDialog extends StatefulWidget {
+class TaskDialog extends StatefulWidget {
   @visibleForTesting
-  const NewTaskDialog({super.key, required this.model});
+  const TaskDialog({super.key, required this.model});
   final TaskList model;
 
   @override
-  State<NewTaskDialog> createState() => _NewTaskDialogState();
+  State<TaskDialog> createState() => _TaskDialogState();
 }
 
-class _NewTaskDialogState extends State<NewTaskDialog> {
+class _TaskDialogState extends State<TaskDialog> {
   late TextEditingController _controller;
 
   @override

@@ -23,7 +23,7 @@ class TaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Task App")),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showNewTaskDialog(context),
+        onPressed: () => showTaskDialog(context),
         child: const Icon(YaruIcons.plus),
       ),
       body: Column(
