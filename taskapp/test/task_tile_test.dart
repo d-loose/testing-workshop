@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:taskapp/task.dart';
 import 'package:taskapp/task_tile.dart';
@@ -31,7 +32,10 @@ void main() {
     );
     await tester.pumpYaruWidget(taskTile);
 
-    expect(find.text('Buy milk'), findsOneWidget);
+    final text = find.text('Buy milk');
+    expect(text, findsOneWidget);
+    expect(tester.widget<Text>(text).style?.decoration,
+        TextDecoration.lineThrough);
 
     final checkbox = find.byType(YaruCheckbox);
     expect(checkbox, findsOneWidget);

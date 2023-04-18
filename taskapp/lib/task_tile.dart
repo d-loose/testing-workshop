@@ -19,7 +19,12 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YaruTile(
-      title: Text(task.name),
+      title: Text(
+        task.name,
+        style: task.done
+            ? const TextStyle(decoration: TextDecoration.lineThrough)
+            : null,
+      ),
       trailing: Row(
         children: [
           YaruCheckbox(
