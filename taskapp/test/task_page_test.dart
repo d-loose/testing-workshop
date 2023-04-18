@@ -17,9 +17,12 @@ class MockTaskList extends Mock implements TaskList {}
 void main() {
   late TaskList model;
 
+  // create a new mock model for each test
   setUp(() {
     model = MockTaskList();
   });
+
+  // test that no tasks are shown when the list is empty
   testWidgets('empty list', (tester) async {
     when(() => model.tasks).thenReturn(UnmodifiableListView([]));
     await tester.pumpYaruWidget(ChangeNotifierProvider.value(
@@ -27,9 +30,11 @@ void main() {
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();
+
     expect(find.byType(TaskTile), findsNothing);
   });
 
+  // test that all tasks are shown when the list is not empty
   testWidgets('non-empty list', (tester) async {
     const tasks = [
       Task(name: "Task 1"),
@@ -41,6 +46,7 @@ void main() {
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();
+
     for (final task in tasks) {
       expect(
         find.byWidgetPredicate(
@@ -50,6 +56,7 @@ void main() {
     }
   });
 
+  // test that the dialog is shown when the user taps the plus button
   testWidgets('open dialog', (tester) async {
     when(() => model.tasks).thenReturn(UnmodifiableListView([]));
     await tester.pumpYaruWidget(ChangeNotifierProvider.value(
@@ -57,8 +64,10 @@ void main() {
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();
+
     await tester.tap(find.byIcon(YaruIcons.plus));
     await tester.pumpAndSettle();
+
     expect(find.byType(TaskDialog), findsOneWidget);
   });
 }
