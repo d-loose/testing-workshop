@@ -10,8 +10,8 @@ dependencies:
     sdk: flutter
 
   provider: ^6.0.5
-  yaru: ^0.6.2
-  yaru_widgets: ^2.3.1
+  yaru: ^0.7.0
+  yaru_widgets: ^2.4.0
   yaru_icons: ^1.0.4
 
 dev_dependencies:
