@@ -9,6 +9,8 @@ import 'package:yaru_widgets/widgets.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+  const waitDuration = Duration(seconds: 2);
+
   testWidgets('integration test', (tester) async {
     app.main();
     await tester.pumpAndSettle();
@@ -18,6 +20,8 @@ void main() {
 
     final fab = find.byType(FloatingActionButton);
     expect(fab, findsOneWidget);
+
+    await Future.delayed(waitDuration);
 
     await tester.tap(fab);
     await tester.pumpAndSettle();
@@ -31,10 +35,14 @@ void main() {
     final textfield = find.byType(TextField);
     expect(textfield, findsOneWidget);
 
+    await Future.delayed(waitDuration);
+
     await tester.enterText(textfield, 'example task');
     await tester.tap(find.text('Add'));
     await tester.pumpAndSettle();
     expect(find.widgetWithText(TaskTile, 'example task'), findsOneWidget);
+
+    await Future.delayed(waitDuration);
 
     final checkbox = find.byType(YaruCheckbox);
     expect(checkbox, findsOneWidget);
@@ -43,8 +51,12 @@ void main() {
     await tester.pumpAndSettle();
     expect(tester.widget<YaruCheckbox>(checkbox).value, isTrue);
 
+    await Future.delayed(waitDuration);
+
     await tester.tap(find.byIcon(YaruIcons.trash));
     await tester.pumpAndSettle();
     expect(find.widgetWithText(TaskTile, 'example task'), findsNothing);
+
+    await Future.delayed(waitDuration);
   });
 }
