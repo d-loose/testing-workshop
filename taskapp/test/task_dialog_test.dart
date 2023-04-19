@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:taskapp/task.dart';
@@ -25,14 +24,7 @@ void main() {
 
   // test that a new task is added
   testWidgets('add task', (tester) async {
-    await tester.pumpYaruWidget(TaskDialog(taskList: taskList));
-    await tester.pumpAndSettle();
-
-    await tester.enterText(find.byType(TextField), "New Task");
-    await tester.tap(find.text("Add"));
-    await tester.pumpAndSettle();
-
-    verify(() => taskList.add(const Task(name: "New Task"))).called(1);
+    throw UnimplementedError('test not implemented');
   });
 
   // ensure that no task is added when the user cancels

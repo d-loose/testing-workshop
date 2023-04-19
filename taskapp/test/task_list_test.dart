@@ -17,7 +17,7 @@ void main() {
 
   // test that the initial state of the TaskList is empty
   test('empty list', () {
-    expect(taskList.tasks, isEmpty);
+    throw UnimplementedError('test not implemented');
   });
 
   // test that we can add a task to the list
@@ -31,21 +31,11 @@ void main() {
 
   // test that we can remove a task from the list
   test('remove task', () {
-    for (final task in testTasks) {
-      taskList.add(task);
-    }
-    taskList.remove(1);
-
-    expect(taskList.tasks, hasLength(2));
-    expect(taskList.tasks.first.name, equals('test_task1'));
-    expect(taskList.tasks.last.name, equals('test_task3'));
+    throw UnimplementedError('test not implemented');
   });
 
   // test that we can mark a task as done
   test('mark task done', () {
-    taskList.add(testTasks.first);
-    taskList.setDone(0, true);
-
-    expect(taskList.tasks.first.done, isTrue);
+    throw UnimplementedError('test not implemented');
   });
 }
