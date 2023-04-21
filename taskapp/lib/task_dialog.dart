@@ -5,17 +5,17 @@ import 'task.dart';
 import 'task_list.dart';
 
 void showTaskDialog(BuildContext context) {
-  final model = context.read<TaskList>();
+  final taskList = context.read<TaskList>();
   showDialog(
     context: context,
-    builder: (context) => TaskDialog(model: model),
+    builder: (context) => TaskDialog(taskList: taskList),
   );
 }
 
 class TaskDialog extends StatefulWidget {
   @visibleForTesting
-  const TaskDialog({super.key, required this.model});
-  final TaskList model;
+  const TaskDialog({super.key, required this.taskList});
+  final TaskList taskList;
 
   @override
   State<TaskDialog> createState() => _TaskDialogState();
@@ -49,7 +49,7 @@ class _TaskDialogState extends State<TaskDialog> {
         ),
         ElevatedButton(
           onPressed: () {
-            widget.model.add(Task(name: _controller.text));
+            widget.taskList.add(Task(name: _controller.text));
             Navigator.pop(context);
           },
           child: const Text("Add"),

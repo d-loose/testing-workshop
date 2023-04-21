@@ -128,9 +128,9 @@ Change something in the implementation and see how this affects the tests.
 ```dart
 class NewTaskDialog extends StatefulWidget {
   @visibleForTesting
-  const NewTaskDialog({super.key, required this.model});
+  const NewTaskDialog({super.key, required this.taskList});
 
-  final TaskList model;
+  final TaskList taskList;
   ...
 }
 ```
@@ -145,16 +145,16 @@ class MockTaskList extends Mock implements TaskList {}
 
 void main() {
   testWidgets('cancel', (tester) async {
-    final model = MockTaskList();
+    final taskList = MockTaskList();
     registerFallbackValue(const Task(name: "")); // mocktail specific
 
-    await tester.pumpYaruWidget(NewTaskDialog(model: model));
+    await tester.pumpYaruWidget(NewTaskDialog(taskList: taskList));
     await tester.pumpAndSettle();
 
     await tester.tap(find.text("Cancel"));
     await tester.pumpAndSettle();
 
-    verifyNever(() => model.add(any()));
+    verifyNever(() => taskList.add(any()));
   });
 }
 ```
@@ -193,10 +193,10 @@ class TaskPage extends StatelessWidget {
 ```dart
 void main() {
   testWidgets('empty list', (tester) async {
-    final model = MockTaskList();
-    when(() => model.tasks).thenReturn(UnmodifiableListView([]));
+    final taskList = MockTaskList();
+    when(() => taskList.tasks).thenReturn(UnmodifiableListView([]));
     await tester.pumpYaruWidget(ChangeNotifierProvider.value(
-      value: model,
+      value: taskList,
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();

@@ -15,18 +15,18 @@ import 'test_utils.dart';
 class MockTaskList extends Mock implements TaskList {}
 
 void main() {
-  late TaskList model;
+  late TaskList taskList;
 
-  // create a new mock model for each test
+  // create a new mock taskList for each test
   setUp(() {
-    model = MockTaskList();
+    taskList = MockTaskList();
   });
 
   // test that no tasks are shown when the list is empty
   testWidgets('empty list', (tester) async {
-    when(() => model.tasks).thenReturn(UnmodifiableListView([]));
+    when(() => taskList.tasks).thenReturn(UnmodifiableListView([]));
     await tester.pumpYaruWidget(ChangeNotifierProvider.value(
-      value: model,
+      value: taskList,
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();
@@ -40,9 +40,9 @@ void main() {
       Task(name: "Task 1"),
       Task(name: "Task 2"),
     ];
-    when(() => model.tasks).thenReturn(UnmodifiableListView(tasks));
+    when(() => taskList.tasks).thenReturn(UnmodifiableListView(tasks));
     await tester.pumpYaruWidget(ChangeNotifierProvider.value(
-      value: model,
+      value: taskList,
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();
@@ -58,9 +58,9 @@ void main() {
 
   // test that the dialog is shown when the user taps the plus button
   testWidgets('open dialog', (tester) async {
-    when(() => model.tasks).thenReturn(UnmodifiableListView([]));
+    when(() => taskList.tasks).thenReturn(UnmodifiableListView([]));
     await tester.pumpYaruWidget(ChangeNotifierProvider.value(
-      value: model,
+      value: taskList,
       child: const TaskPage(),
     ));
     await tester.pumpAndSettle();

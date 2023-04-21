@@ -121,9 +121,9 @@ You can access a widget's properties with <code>tester.widget&lt;WidgetType&gt;(
 <p><img src="images/task_dialog.png" alt="TaskDialog" /></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NewTaskDialog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatefulWidget</span> </span>{
   <span class="hljs-meta">@visibleForTesting</span>
-  <span class="hljs-keyword">const</span> NewTaskDialog({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.model});
+  <span class="hljs-keyword">const</span> NewTaskDialog({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.taskList});
 
-  <span class="hljs-keyword">final</span> TaskList model;
+  <span class="hljs-keyword">final</span> TaskList taskList;
   ...
 }
 </code></pre>
@@ -136,16 +136,16 @@ You can access a widget's properties with <code>tester.widget&lt;WidgetType&gt;(
 
 <span class="hljs-keyword">void</span> main() {
   testWidgets(<span class="hljs-string">&#x27;cancel&#x27;</span>, (tester) <span class="hljs-keyword">async</span> {
-    <span class="hljs-keyword">final</span> model = MockTaskList();
+    <span class="hljs-keyword">final</span> taskList = MockTaskList();
     registerFallbackValue(<span class="hljs-keyword">const</span> Task(name: <span class="hljs-string">&quot;&quot;</span>)); <span class="hljs-comment">// mocktail specific</span>
 
-    <span class="hljs-keyword">await</span> tester.pumpYaruWidget(NewTaskDialog(model: model));
+    <span class="hljs-keyword">await</span> tester.pumpYaruWidget(NewTaskDialog(taskList: taskList));
     <span class="hljs-keyword">await</span> tester.pumpAndSettle();
 
     <span class="hljs-keyword">await</span> tester.tap(find.text(<span class="hljs-string">&quot;Cancel&quot;</span>));
     <span class="hljs-keyword">await</span> tester.pumpAndSettle();
 
-    verifyNever(() =&gt; model.add(any()));
+    verifyNever(() =&gt; taskList.add(any()));
   });
 }
 </code></pre>
@@ -178,10 +178,10 @@ You can access a widget's properties with <code>tester.widget&lt;WidgetType&gt;(
 <h2 id="taskpage---example-widget-test"><code>TaskPage</code> - Example Widget Test</h2>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-dart"><span class="hljs-keyword">void</span> main() {
   testWidgets(<span class="hljs-string">&#x27;empty list&#x27;</span>, (tester) <span class="hljs-keyword">async</span> {
-    <span class="hljs-keyword">final</span> model = MockTaskList();
-    when(() =&gt; model.tasks).thenReturn(UnmodifiableListView([]));
+    <span class="hljs-keyword">final</span> taskList = MockTaskList();
+    when(() =&gt; taskList.tasks).thenReturn(UnmodifiableListView([]));
     <span class="hljs-keyword">await</span> tester.pumpYaruWidget(ChangeNotifierProvider.value(
-      value: model,
+      value: taskList,
       child: <span class="hljs-keyword">const</span> TaskPage(),
     ));
     <span class="hljs-keyword">await</span> tester.pumpAndSettle();
