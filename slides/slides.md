@@ -242,3 +242,10 @@ void main() {
 ## Integration Tests - Exercise
 
 Implement an integration test that adds a new task through the dialog, marks it as done and removes it. Verify that the UI is updated accordingly at each point.
+
+---
+## Resources
+
+- [Testing Flutter Apps](https://flutter.dev/docs/testing)
+- [Flutter Testing Cookbook](https://flutter.dev/docs/cookbook/testing)
+- [Ubuntu Flutter Community Samples](https://github.com/ubuntu-flutter-community/samples)
